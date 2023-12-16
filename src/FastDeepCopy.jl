@@ -16,11 +16,11 @@ function fastdeepcopy(ds::Dict{K,S}) where {K,S}
     return Dict{K,S}(fastdeepcopy(p) for p in ds)
 end
 
-function fastdeepcopy(ds::Pair)
-    if isbits(ds)
-    	return deepcopy(ds)
+function fastdeepcopy(p::Pair)
+    if isbits(p)
+    	return deepcopy(p)
     else
-    	return fastdeepcopy(ds.first) => fastdeepcopy(ds.second)
+    	return fastdeepcopy(p.first) => fastdeepcopy(p.second)
     end
 end
 
