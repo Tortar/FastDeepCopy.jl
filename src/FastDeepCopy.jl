@@ -1,5 +1,7 @@
 module FastDeepCopy
 
+export fastdeepcopy
+
 function fastdeepcopy(vs::Vector{S}) where {S}
     return S[fastdeepcopy(s) for s in vs]
 end
