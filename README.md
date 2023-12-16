@@ -49,3 +49,19 @@ julia> r = minimum(@benchmark(deepcopy($v)).times) / minimum(@benchmark(fastdeep
 ```
 
 As you can see, it is more than 200x faster for a vector of mutable structs!
+
+The benchmarks have been run on
+
+```
+Julia Version 1.9.4
+Commit 8e5136fa297 (2023-11-14 08:46 UTC)
+Build Info:
+  Official https://julialang.org/ release
+Platform Info:
+  OS: Linux (x86_64-linux-gnu)
+  CPU: 12 × AMD Ryzen 5 5600H with Radeon Graphics
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-14.0.6 (ORCJIT, znver3)
+  Threads: 1 on 12 virtual cores
+```
