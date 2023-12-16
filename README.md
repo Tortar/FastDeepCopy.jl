@@ -1,1 +1,1 @@
-# StructDeepCopy.jl
+# FastDeepCopy.jl
