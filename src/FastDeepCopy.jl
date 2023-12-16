@@ -13,7 +13,11 @@ function fastdeepcopy(ts::Tuple)
 end
 
 function fastdeepcopy(ds::Dict{K,S}) where {K,S}
-    return Dict{K,S}(fastdeepcopy(p) for p in ds)
+    if isbitstype(K) && isbitstype(S)
+    	return deepcopy(ds)
+    else
+    	return Dict{K,S}(fastdeepcopy(p) for p in ds)
+    end
 end
 
 function fastdeepcopy(p::Pair)
