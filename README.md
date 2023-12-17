@@ -67,3 +67,36 @@ Platform Info:
   LLVM: libLLVM-14.0.6 (ORCJIT, znver3)
   Threads: 1 on 12 virtual cores
 ```
+
+## Limitations
+
+Unlike `deepcopy` this more performant version doesn't preserve object identities:
+
+```julia
+julia> a = [1];
+
+julia> b = [a, a]
+2-element Vector{Vector{Int64}}:
+ [1]
+ [1]
+
+julia> c = deepcopy(b)
+2-element Vector{Vector{Int64}}:
+ [1]
+ [1]
+
+julia> c[1] === c[2]
+true
+
+julia> using FastDeepCopy
+
+julia> c = fastdeepcopy(b)
+2-element Vector{Vector{Int64}}:
+ [1]
+ [1]
+
+julia> c[1] === c[2]
+false
+```
+
+which means that `fastdeepcopy` should **not** be used when mutable structures are passed by reference inside the object to be copied.
