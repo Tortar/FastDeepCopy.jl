@@ -1,6 +1,6 @@
-# FastDeepCopy.jl
+,# FastDeepCopy.jl
 
-This package export a single function called `fastdeepcopy` which performs much better than its `Base` counterpart `deepcopy` when used on most non-isbits types as shown below:
+This package export a single function called `fastdeepcopy` which performs much better than its `Base` counterpart `deepcopy` when used on most non-isbits types, as shown below:
 
 ```julia
 # benchmarks on some common cases
@@ -54,7 +54,7 @@ As you can see, it is more than 200x faster for a vector of mutable structs!
 
 ## Limitations
 
-Unlike `deepcopy` this more performant version doesn't preserve object identities:
+Unlike `deepcopy` this more performant version **doesn't** preserve object identities inside the object to be copied:
 
 ```julia
 julia> a = [1]; b = [a, a];
@@ -81,5 +81,3 @@ julia> push!(c[1], 1); c
  [1, 1]
  [1]
 ```
-
-which means that `fastdeepcopy` should **not** be used when mutable structures are passed by reference inside the object to be copied.
