@@ -1,4 +1,4 @@
-,# FastDeepCopy.jl
+## FastDeepCopy.jl
 
 This package export a single function called `fastdeepcopy` which performs much better than its `Base` counterpart `deepcopy` when used on most non-isbits types, as shown below:
 
